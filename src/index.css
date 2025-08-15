@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* EDUCAvet brand-driven tokens (HSL only) */
+    --background: 228 33% 7%;            /* Deep navy #0f1724-like */
+    --foreground: 210 40% 98%;           /* Near-white */
+
+    --card: 228 33% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 228 33% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 325 85% 52%;              /* EDUCAvet magenta */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 15% 18%;            /* Slate panel */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 225 15% 20%;
+    --muted-foreground: 215 20% 75%;
+
+    --accent: 24 95% 58%;                /* CTA orange */
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 14% 22%;
+    --input: 225 14% 22%;
+    --ring: 325 85% 52%;
+
+    --radius: 0.75rem;                   /* Softer cards */
+
+    --sidebar-background: 228 33% 9%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 325 85% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 225 14% 22%;
+    --sidebar-ring: 325 85% 52%;
+  }
+
+  .dark {
+    /* Light tokens if dark class is applied (optional) */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 325 85% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 24 95% 58%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 325 85% 52%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 325 85% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 325 85% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  .story-link {
+    @apply relative inline-block;
+  }
+  .story-link::after {
+    content: "";
+    @apply absolute left-0 bottom-0 h-0.5 w-full origin-bottom-right scale-x-0 bg-primary transition-transform duration-300;
+  }
+  .story-link:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+}
