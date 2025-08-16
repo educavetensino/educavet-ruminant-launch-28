@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 const schema = yup.object({
   name: yup.string().required("Informe seu nome"),
   email: yup.string().email("E-mail inválido").required("Informe seu e-mail"),
@@ -56,19 +57,53 @@ const VideoSignup = ({
       ...data,
       phone: data.phone ? '(hidden)' : ''
     });
+    
+    // Honeypot check on client side (backup)
     if (data.company) {
       if (debug) console.warn('[HeroForm] honeypot triggered');
       return;
     }
+    
     try {
       setLoading(true);
-      // Fase 1: mock de envio. Substituir por integração Supabase/Edge Function.
-      await new Promise(r => setTimeout(r, 900));
+      
+      // Call secure Edge Function
+      const { data: result, error } = await supabase.functions.invoke('register-webinar', {
+        body: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          city: data.city,
+          state: data.state,
+          consent: data.consent,
+          company: data.company, // honeypot
+        }
+      });
+
+      if (error) {
+        console.error('[HeroForm] Edge Function error:', error);
+        toast({
+          title: 'Erro ao enviar',
+          description: 'Tente novamente em instantes.'
+        });
+        return;
+      }
+
+      // Check for application-level errors
+      if (result?.error) {
+        toast({
+          title: 'Erro',
+          description: result.error
+        });
+        return;
+      }
+
       toast({
         title: 'Inscrição recebida',
         description: 'Confira seu e-mail para confirmação.'
       });
       setOpen(true);
+      
     } catch (e) {
       console.error('[HeroForm] error', e);
       toast({
