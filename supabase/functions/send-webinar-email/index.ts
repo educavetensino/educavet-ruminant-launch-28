@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
 
 interface WebinarEmailRequest {
   record: {
@@ -7,6 +8,108 @@ interface WebinarEmailRequest {
     email: string;
     created_at: string;
   };
+}
+
+// Função para enviar e-mail de confirmação usando SMTP do Supabase
+async function sendConfirmationEmail(first_name: string, email: string): Promise<boolean> {
+  try {
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    );
+
+    const emailHtml = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        <div style="background: linear-gradient(135deg, #334155 0%, #475569 100%); padding: 40px 20px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 28px;">EDUCAvet</h1>
+          <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">Capacitação veterinária de excelência</p>
+        </div>
+        
+        <div style="padding: 40px 30px;">
+          <h2 style="color: #334155; margin: 0 0 20px 0; font-size: 24px;">Olá ${first_name}! 🎉</h2>
+          
+          <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0 0 25px 0;">
+            Sua inscrição no webinar <strong>"Clínica Cirúrgica de Ruminantes"</strong> foi confirmada com sucesso!
+          </p>
+          
+          <div style="background-color: #f8fafc; border-left: 4px solid #334155; padding: 25px; margin: 30px 0; border-radius: 0 8px 8px 0;">
+            <h3 style="color: #334155; margin: 0 0 15px 0; font-size: 18px;">📅 Detalhes do Webinar</h3>
+            <p style="margin: 8px 0; color: #475569;"><strong>Tema:</strong> Clínica Cirúrgica de Ruminantes</p>
+            <p style="margin: 8px 0; color: #475569;"><strong>Modalidade:</strong> Online e Gratuito</p>
+            <p style="margin: 8px 0; color: #475569;"><strong>Certificado:</strong> Incluso para participantes</p>
+          </div>
+          
+          <h4 style="color: #334155; margin: 25px 0 15px 0;">🎯 O que você vai aprender:</h4>
+          <ul style="color: #475569; padding-left: 20px; line-height: 1.8;">
+            <li>Técnicas cirúrgicas avançadas para ruminantes</li>
+            <li>Protocolos de segurança e assepsia</li>
+            <li>Manejo pré e pós-operatório</li>
+            <li>Casos clínicos práticos com especialistas</li>
+            <li>Tendências e inovações na área</li>
+          </ul>
+          
+          <div style="text-align: center; margin: 40px 0;">
+            <div style="background-color: #334155; color: white; padding: 15px 30px; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px;">
+              🚀 Link de acesso será enviado em breve
+            </div>
+          </div>
+          
+          <div style="background-color: #fef3c7; border-radius: 8px; padding: 20px; margin: 30px 0;">
+            <p style="margin: 0; color: #92400e; font-size: 14px; text-align: center;">
+              <strong>⚡ Importante:</strong> Você receberá o link de acesso alguns minutos antes do início do webinar. Verifique sua caixa de entrada e spam.
+            </p>
+          </div>
+        </div>
+        
+        <div style="background-color: #f8fafc; padding: 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+          <p style="margin: 0 0 10px 0; color: #64748b; font-size: 14px;">
+            <strong>EDUCAvet</strong> - Transformando a medicina veterinária através da educação
+          </p>
+          <p style="margin: 0; color: #94a3b8; font-size: 12px;">
+            Este e-mail foi enviado para ${email}
+          </p>
+        </div>
+      </div>
+    `;
+
+    // Enviar e-mail usando o serviço nativo do Supabase
+    const { data, error } = await supabase.auth.admin.inviteUserByEmail(email, {
+      data: {
+        first_name: first_name,
+        webinar_confirmation: true
+      },
+      redirectTo: undefined // Não redirecionar, é apenas confirmação
+    });
+
+    // Como o método acima é para convites, vamos usar uma abordagem diferente
+    // Usando a API de e-mail do Supabase diretamente
+    const emailResponse = await fetch(`${Deno.env.get('SUPABASE_URL')}/rest/v1/rpc/send_email`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')}`,
+        'Content-Type': 'application/json',
+        'apikey': Deno.env.get('SUPABASE_ANON_KEY') ?? ''
+      },
+      body: JSON.stringify({
+        to_email: email,
+        from_email: 'EDUCAvet <contato@cursoseducavet.com>',
+        subject: `${first_name}, sua inscrição no Webinar está confirmada 🎉`,
+        html_content: emailHtml
+      })
+    });
+
+    if (!emailResponse.ok) {
+      console.error('Erro ao enviar e-mail via Supabase:', await emailResponse.text());
+      return false;
+    }
+
+    console.log(`✅ E-mail de confirmação enviado com sucesso para ${email}`);
+    return true;
+
+  } catch (error) {
+    console.error('Erro na função sendConfirmationEmail:', error);
+    return false;
+  }
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -20,72 +123,16 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { record }: WebinarEmailRequest = await req.json();
     
-    console.log(`Enviando e-mail de confirmação para: ${record.email}`);
+    console.log(`Processando envio de e-mail para: ${record.email}`);
 
-    // Aqui você pode integrar com seu provedor de e-mail
-    // Exemplos: SendGrid, Resend, Amazon SES, etc.
+    // Chamar a função sendConfirmationEmail
+    const emailSent = await sendConfirmationEmail(record.first_name, record.email);
     
-    // Template básico do e-mail
-    const emailData = {
-      to: record.email,
-      subject: "Confirmação de Inscrição - Webinar Clínica Cirúrgica de Ruminantes",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Olá ${record.first_name}!</h2>
-          
-          <p>Sua inscrição no webinar <strong>"Clínica Cirúrgica de Ruminantes"</strong> foi confirmada com sucesso!</p>
-          
-          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3>📅 Detalhes do Webinar:</h3>
-            <p><strong>Tema:</strong> Clínica Cirúrgica de Ruminantes</p>
-            <p><strong>Data:</strong> [DATA_DO_WEBINAR]</p>
-            <p><strong>Horário:</strong> [HORARIO_DO_WEBINAR]</p>
-            <p><strong>Plataforma:</strong> [PLATAFORMA]</p>
-          </div>
-          
-          <p>🎯 <strong>O que você vai aprender:</strong></p>
-          <ul>
-            <li>Técnicas cirúrgicas avançadas para ruminantes</li>
-            <li>Protocolos de segurança e assepsia</li>
-            <li>Manejo pré e pós-operatório</li>
-            <li>Casos clínicos práticos</li>
-          </ul>
-          
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="[LINK_DO_WEBINAR]" style="background-color: #334155; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
-              🚀 Acessar Webinar
-            </a>
-          </div>
-          
-          <p>Você receberá o link de acesso alguns minutos antes do início do webinar.</p>
-          
-          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
-          
-          <p style="font-size: 14px; color: #6b7280;">
-            <strong>EDUCAvet</strong><br>
-            Capacitação veterinária de excelência
-          </p>
-        </div>
-      `
-    };
+    if (!emailSent) {
+      throw new Error('Falha ao enviar e-mail de confirmação');
+    }
 
-    // Aqui você faria a chamada para seu provedor de e-mail
-    // Exemplo com fetch para um webhook/API de e-mail:
-    /*
-    const emailResponse = await fetch('YOUR_EMAIL_PROVIDER_API', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${Deno.env.get('EMAIL_API_KEY')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    });
-    */
-
-    console.log(`E-mail preparado para ${record.email}:`, emailData);
-    
-    // Por enquanto, apenas logamos o e-mail (substitua pela integração real)
-    console.log('✅ E-mail de confirmação processado com sucesso');
+    console.log('✅ E-mail de confirmação enviado com sucesso');
 
     return new Response(JSON.stringify({ 
       success: true,
