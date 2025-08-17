@@ -26,39 +26,34 @@ async function sendConfirmationEmail(first_name: string, email: string): Promise
         </div>
         
         <div style="padding: 40px 30px;">
-          <h2 style="color: #334155; margin: 0 0 20px 0; font-size: 24px;">Olá ${first_name}! 🎉</h2>
+          <h2 style="color: #334155; margin: 0 0 20px 0; font-size: 24px;">Olá, ${first_name},</h2>
           
           <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0 0 25px 0;">
-            Sua inscrição no webinar <strong>"Clínica Cirúrgica de Ruminantes"</strong> foi confirmada com sucesso!
+            Parabéns! Sua inscrição para o <strong>Webinar de Clínica Cirúrgica de Ruminantes</strong> está confirmada.
           </p>
           
           <div style="background-color: #f8fafc; border-left: 4px solid #334155; padding: 25px; margin: 30px 0; border-radius: 0 8px 8px 0;">
-            <h3 style="color: #334155; margin: 0 0 15px 0; font-size: 18px;">📅 Detalhes do Webinar</h3>
-            <p style="margin: 8px 0; color: #475569;"><strong>Tema:</strong> Clínica Cirúrgica de Ruminantes</p>
-            <p style="margin: 8px 0; color: #475569;"><strong>Modalidade:</strong> Online e Gratuito</p>
-            <p style="margin: 8px 0; color: #475569;"><strong>Certificado:</strong> Incluso para participantes</p>
-          </div>
-          
-          <h4 style="color: #334155; margin: 25px 0 15px 0;">🎯 O que você vai aprender:</h4>
-          <ul style="color: #475569; padding-left: 20px; line-height: 1.8;">
-            <li>Técnicas cirúrgicas avançadas para ruminantes</li>
-            <li>Protocolos de segurança e assepsia</li>
-            <li>Manejo pré e pós-operatório</li>
-            <li>Casos clínicos práticos com especialistas</li>
-            <li>Tendências e inovações na área</li>
-          </ul>
-          
-          <div style="text-align: center; margin: 40px 0;">
-            <div style="background-color: #334155; color: white; padding: 15px 30px; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px;">
-              🚀 Link de acesso será enviado em breve
-            </div>
+            <p style="margin: 8px 0; color: #475569; font-size: 16px;"><strong>📅 Data:</strong> 16 de setembro de 2025</p>
+            <p style="margin: 8px 0; color: #475569; font-size: 16px;"><strong>⏰ Horário:</strong> 18:57</p>
+            <p style="margin: 8px 0; color: #475569; font-size: 16px;"><strong>🌐 Curso Online</strong> (link enviado próximo ao evento)</p>
           </div>
           
           <div style="background-color: #fef3c7; border-radius: 8px; padding: 20px; margin: 30px 0;">
-            <p style="margin: 0; color: #92400e; font-size: 14px; text-align: center;">
-              <strong>⚡ Importante:</strong> Você receberá o link de acesso alguns minutos antes do início do webinar. Verifique sua caixa de entrada e spam.
+            <p style="margin: 0 0 15px 0; color: #92400e; font-size: 16px;">
+              <strong>⚠️ Importante:</strong> Entre no grupo oficial do WhatsApp:
             </p>
+            <div style="text-align: center;">
+              <a href="https://chat.whatsapp.com/Kizr0eAtG49Am7rUB5JDHu" 
+                 style="background-color: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px;">
+                👉 Link do WhatsApp
+              </a>
+            </div>
           </div>
+          
+          <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 25px 0;">
+            Nos vemos lá!<br>
+            Equipe <strong>EDUCAvet</strong>
+          </p>
         </div>
         
         <div style="background-color: #f8fafc; padding: 30px; text-align: center; border-top: 1px solid #e2e8f0;">
