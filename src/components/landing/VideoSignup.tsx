@@ -127,7 +127,7 @@ const VideoSignup = ({
 
           <div className="mt-5 space-y-4">
             <div>
-              <label htmlFor="name" className="text-sm">Nome completo (opcional)</label>
+              <label htmlFor="name" className="text-sm">Nome completo (obrigatório)</label>
               <Input id="name" placeholder="Seu nome" aria-invalid={!!errors.name} {...register('name')} />
               {errors.name && <p role="alert" className="mt-1 text-xs text-destructive">{errors.name.message}</p>}
             </div>
@@ -141,11 +141,11 @@ const VideoSignup = ({
               <Input id="phone" placeholder="(00) 00000-0000" {...register('phone')} />
             </div>
             <div>
-              <label htmlFor="city" className="text-sm">Cidade (opcional)</label>
+              <label htmlFor="city" className="text-sm">Cidade (obrigatório)</label>
               <Input id="city" placeholder="São Paulo" {...register('city')} />
             </div>
             <div>
-              <label htmlFor="state" className="text-sm">Estado (opcional)</label>
+              <label htmlFor="state" className="text-sm">Estado (obrigatório)</label>
               <Input id="state" placeholder="SP" {...register('state')} />
             </div>
             {/* Honeypot */}
