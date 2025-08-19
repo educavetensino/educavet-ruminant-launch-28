@@ -28,7 +28,7 @@ const HeadSection = ({ title, description, canonical }: HeadSectionProps) => {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '349980177545018');
+          fbq('init', '349980177545084');
           fbq('track', 'PageView');
         `}
       </script>
@@ -36,10 +36,11 @@ const HeadSection = ({ title, description, canonical }: HeadSectionProps) => {
         <img 
           height="1" 
           width="1" 
-          style={{display: 'none'}}
-          src="https://www.facebook.com/tr?id=349980177545018&ev=PageView&noscript=1"
+          style={{ display: 'none' }}
+          src="https://www.facebook.com/tr?id=349980177545084&ev=PageView&noscript=1"
         />
       </noscript>
+      {/* End Meta Pixel Code */}
     </Helmet>
   );
 };
