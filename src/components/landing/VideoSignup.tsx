@@ -179,7 +179,7 @@ const VideoSignup = ({
               Não recebeu o e-mail? Entre em contato pelo WhatsApp
             </p>
             <a 
-              href="https://wa.me/5511999999999?text=Olá, não recebi o e-mail do webinar de Clínica Cirúrgica de Ruminantes"
+              href="https://wa.me/554792165717?text=Quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20webinar!"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full h-10 px-4 py-2 rounded-md text-sm font-medium bg-[#25D366] text-white hover:bg-[#20B85A] transition-colors"
