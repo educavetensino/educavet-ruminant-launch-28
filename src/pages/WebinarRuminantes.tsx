@@ -9,7 +9,7 @@ import FinalCTA from "@/components/landing/FinalCTA";
 import Instructor from "@/components/landing/Instructor";
 import FAQ from "@/components/landing/FAQ";
 import FooterSimple from "@/components/landing/FooterSimple";
-const logoSrc = "/lovable-uploads/b58abba6-9515-4b44-b589-d91b3f71e060.png";
+const logoSrc = "/lovable-uploads/f68f215d-8270-4d71-8e35-41ec4bb781b8.png";
 
 const WebinarRuminantes = () => {
   const title = "Webinar Grátis: Clínica Cirúrgica de Ruminantes | EDUCAvet";
