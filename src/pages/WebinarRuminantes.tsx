@@ -18,14 +18,6 @@ const WebinarRuminantes = () => {
 
   return (
     <main className="relative min-h-screen">
-      {/* Logo transparente no fundo direito */}
-      <div className="fixed bottom-10 right-10 opacity-10 pointer-events-none z-0">
-        <img 
-          src={logoSrc}
-          alt="" 
-          className="w-32 md:w-48 h-auto"
-        />
-      </div>
       <HeadSection title={title} description={description} />
       <Navigation />
       <HeroSection />
