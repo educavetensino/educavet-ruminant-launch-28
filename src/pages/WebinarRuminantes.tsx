@@ -17,20 +17,13 @@ const WebinarRuminantes = () => {
 
   return (
     <main className="relative min-h-screen">
-      <div className="absolute inset-0 -z-10" aria-hidden>
+      {/* Logo transparente no fundo direito */}
+      <div className="fixed bottom-10 right-10 opacity-10 pointer-events-none z-0">
         <img 
-          src="/lovable-uploads/83382ecb-4acd-4cb4-b077-2202957339c0.png" 
+          src={logoSrc}
           alt="" 
-          className="w-full h-full object-cover fixed"
+          className="w-32 md:w-48 h-auto"
         />
-        {/* Logo transparente no fundo direito */}
-        <div className="fixed bottom-10 right-10 opacity-10 pointer-events-none z-0">
-          <img 
-            src={logoSrc}
-            alt="" 
-            className="w-32 md:w-48 h-auto"
-          />
-        </div>
       </div>
       <HeadSection title={title} description={description} />
       <HeroSection />
