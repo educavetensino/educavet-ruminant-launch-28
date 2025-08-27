@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-const LOGO_SRC = "/lovable-uploads/b0ad74de-2abc-40cc-8e16-281cf81c8444.png";
+const logoSrc = "/lovable-uploads/b58abba6-9515-4b44-b589-d91b3f71e060.png";
 
 // Ajuste aqui a data/hora do webinar (timezone -03:00)
 const WEBINAR_DATETIME = "2025-09-16T18:57:00-03:00";
@@ -39,7 +39,7 @@ const HeroSection = () => {
           duration: 0.5,
           ease: "easeOut"
         }} className="text-left">
-            <img src={LOGO_SRC} alt="Logo EDUCAvet" width={220} height={64} loading="lazy" className="mb-3 h-auto w-32 md:w-44" />
+            <img src={logoSrc} alt="Logo EDUCAvet" width={220} height={64} loading="lazy" className="mb-3 h-auto w-32 md:w-44" />
             <h1 className="mt-4 text-3xl md:text-5xl font-bold leading-tight tracking-tight animate-fade-in">
               Clínica Cirúrgica de Ruminantes
             </h1>

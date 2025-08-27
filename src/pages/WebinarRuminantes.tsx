@@ -9,6 +9,7 @@ import FinalCTA from "@/components/landing/FinalCTA";
 import Instructor from "@/components/landing/Instructor";
 import FAQ from "@/components/landing/FAQ";
 import FooterSimple from "@/components/landing/FooterSimple";
+const logoSrc = "/lovable-uploads/b58abba6-9515-4b44-b589-d91b3f71e060.png";
 
 const WebinarRuminantes = () => {
   const title = "Webinar Grátis: Clínica Cirúrgica de Ruminantes | EDUCAvet";
@@ -22,6 +23,14 @@ const WebinarRuminantes = () => {
           alt="" 
           className="w-full h-full object-cover fixed"
         />
+        {/* Logo transparente no fundo direito */}
+        <div className="fixed bottom-10 right-10 opacity-10 pointer-events-none z-0">
+          <img 
+            src={logoSrc}
+            alt="" 
+            className="w-32 md:w-48 h-auto"
+          />
+        </div>
       </div>
       <HeadSection title={title} description={description} />
       <HeroSection />
