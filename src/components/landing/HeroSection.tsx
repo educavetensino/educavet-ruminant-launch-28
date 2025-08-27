@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-const logoSrc = "/lovable-uploads/b58abba6-9515-4b44-b589-d91b3f71e060.png";
+const logoSrc = "/lovable-uploads/213c64a8-2323-4f86-b613-f91afc57109a.png";
 
 // Ajuste aqui a data/hora do webinar (timezone -03:00)
 const WEBINAR_DATETIME = "2025-09-16T18:57:00-03:00";

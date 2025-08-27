@@ -9,7 +9,7 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* EDUCAvet brand-driven tokens (HSL only) */
-    --background: 232 35% 11%;           /* Neon Navy #191c37 */
+    --background: 170 96% 29%;           /* Green #029472 */
     --foreground: 210 40% 98%;           /* Near-white */
 
     --card: 0 0% 0%;                     /* Black #000000 */
