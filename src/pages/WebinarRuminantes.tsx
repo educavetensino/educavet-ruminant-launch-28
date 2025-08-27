@@ -1,4 +1,5 @@
 import HeadSection from "@/components/landing/HeadSection";
+import Navigation from "@/components/ui/navigation";
 import HeroSection from "@/components/landing/HeroSection";
 import VideoSignup from "@/components/landing/VideoSignup";
 import SocialTicker from "@/components/landing/SocialTicker";
@@ -26,6 +27,7 @@ const WebinarRuminantes = () => {
         />
       </div>
       <HeadSection title={title} description={description} />
+      <Navigation />
       <HeroSection />
       <VideoSignup />
       <BenefitsGrid />
