@@ -18,8 +18,8 @@ All colors MUST be HSL.
     --popover: 230 38% 16%;              /* Neon Navy #191C37 */
     --popover-foreground: 210 40% 98%;
 
-    --primary: 325 85% 52%;              /* EDUCAvet magenta */
-    --primary-foreground: 0 0% 100%;
+    --primary: 45 93% 58%;               /* Golden yellow */
+    --primary-foreground: 230 38% 16%;
 
     --secondary: 0 0% 5%;                /* Dark variant */
     --secondary-foreground: 210 40% 98%;
