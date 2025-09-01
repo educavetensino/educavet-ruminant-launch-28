@@ -121,7 +121,7 @@ const VideoSignup = ({
             <iframe title="Apresentação EDUCAvet" src="https://www.youtube.com/embed/pa4Qv4oN_gw?rel=0" className="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" />
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl border border-border bg-card p-6 shadow">
+        <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl border border-primary bg-card p-6 shadow">
           <h2 className="text-2xl font-semibold">Inscreva-se gratuitamente</h2>
           <p className="mt-1 text-sm text-muted-foreground">Vagas limitadas. Receba o link de acesso por e-mail.</p>
 
