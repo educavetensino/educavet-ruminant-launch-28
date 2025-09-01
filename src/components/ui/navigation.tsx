@@ -21,7 +21,7 @@ const Navigation = () => {
             <img 
               src={logoSrc}
               alt="EDUCAvet" 
-              className="h-16 w-auto mt-2"
+              className="h-16 w-auto mt-6"
             />
           </div>
           
