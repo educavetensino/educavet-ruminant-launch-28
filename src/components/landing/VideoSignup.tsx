@@ -170,7 +170,7 @@ const VideoSignup = ({
             {errors.consent && <p role="alert" className="-mt-2 text-xs text-destructive">{errors.consent.message}</p>}
           </div>
 
-          <Button type="submit" disabled={loading || !isFormValid} aria-busy={loading} className="mt-6 w-full bg-slate-700 text-white hover:bg-slate-600 text-base disabled:opacity-50 disabled:cursor-not-allowed">
+          <Button type="submit" disabled={loading || !isFormValid} aria-busy={loading} className="mt-6 w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base disabled:opacity-50 disabled:cursor-not-allowed">
             {loading ? 'Enviando...' : 'Quero minha vaga gratuita'}
           </Button>
           
