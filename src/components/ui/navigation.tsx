@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
 const Navigation = () => {
-  const logoSrc = "/lovable-uploads/213c64a8-2323-4f86-b613-f91afc57109a.png";
+  const logoSrc = "/lovable-uploads/7fbd0d21-182a-407a-9142-69b993955e4c.png";
   
   const handleWhatsAppContact = () => {
     // Número do WhatsApp - ajustar conforme necessário
