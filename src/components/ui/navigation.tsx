@@ -7,7 +7,7 @@ const Navigation = () => {
   
   const handleWhatsAppContact = () => {
     // Número do WhatsApp - ajustar conforme necessário
-    const phoneNumber = "5511999999999"; // Exemplo
+    const phoneNumber = "554792165717";
     const message = "Olá! Gostaria de saber mais sobre o webinar de Clínica Cirúrgica de Ruminantes.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
